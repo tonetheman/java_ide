@@ -19,7 +19,7 @@ public class IDE {
 	DefaultListModel projectFiles = new DefaultListModel();
 	JList projectList = null;
 
-	DefaultListModel classpathModel = new DefaultListModel();
+	DefaultListModel classPathModel = new DefaultListModel();
 	JList classPathList = null;
 
 	public void loadProjectFile(File f) {
@@ -34,6 +34,12 @@ public class IDE {
 				projectFiles.addElement(
 					props.getProperty("f"+i)
 				);
+			}
+			count = Integer.parseInt(
+				props.getProperty("classpathentries"));
+			for(int i=0;i<count;i++) {
+				classPathModel.addElement(
+					props.getProperty("c"+i));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -112,10 +118,13 @@ public class IDE {
 		top.add(compile);
 		mf.getContentPane().add(top, BorderLayout.NORTH);
 		JPanel left = new JPanel();
+		left.setLayout(new FlowLayout());
 		projectList = new JList(projectFiles);
 		projectList.setSelectionMode(
 			ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		left.add(projectList);
+		classPathList = new JList(classPathModel);
+		left.add(classPathList);	
 		mf.getContentPane().add(left,BorderLayout.WEST);
 		mf.setVisible(true);
 	}
