@@ -1,0 +1,8 @@
+project=name goes here
+sourcepath=./src
+classdir=./classes
+sourcefiles=2
+f0=src/Junk.java
+f1=src/tone/Cool.java
+classpathentries=1
+c0=crud.jar
